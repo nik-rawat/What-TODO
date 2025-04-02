@@ -1,31 +1,31 @@
-"use client";
+'use client';
 
-import "./globals.css";
-import { config } from "./wagmi";
-import { WagmiProvider } from "wagmi";
-import { useAccount } from "wagmi"
-
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
-
-const queryClient = new QueryClient();
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useAccount } from "wagmi";
+import Todo from './components/todo';
 
 export default function Home() {
+  // useAccount returns an object with these properties
+  const { isConnected, } = useAccount();
+
   return (
-    <WagmiProvider config={config}>
-      <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider>
-          <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div className="fixed top-0 right-0 flex p-8">
-              <ConnectButton />
-            </div>
-            <h1 className="text-4xl font-bold">Welcome to What-TODO</h1>
-            <p className="mt-4 text-lg">Your decentralized task management solution.</p>
-          </main>
-        </RainbowKitProvider>
-      </QueryClientProvider>
-    </WagmiProvider>
-    
+    <main className="w-full min-h-screen bg-gradient-to-b from-blue-950 to-gray-950">
+      <div className="fixed top-0 flex justify-between w-full p-4 bg-(gray-950) bg-opacity-50 z-1">
+        <h2 className='text-2xl font-bold'>What-TODO</h2>
+        <div className="flex gap-1">
+          <ConnectButton />
+        </div>
+      </div>
+
+      {isConnected ?
+        <div className="flex flex-col items-center justify-center w-full h-screen text-white z-0">
+            <Todo />
+        </div> 
+        : <div className="flex flex-col items-center justify-center w-full h-screen text-white z-0">
+            <h1 className="text-6xl font-bold">Welcome to What-TODO</h1>
+            <p className="text-2xl">A decentralized task management app</p>
+          </div>
+      }
+    </main>
   );
 }

@@ -1,16 +1,16 @@
 import { getDefaultConfig } from '@rainbow-me/rainbowkit';
 import {
-  arbitrum,
-  base,
-  mainnet,
-  optimism,
-  polygon,
-  sepolia,
+    arbitrum,
+    base,
+    mainnet,
+    optimism,
+    polygon,
+    sepolia,
 } from 'wagmi/chains';
 
 export const config = getDefaultConfig({
-  appName: 'RainbowKit App',
-  projectId: 'YOUR_PROJECT_ID',
+  appName: 'What-TODO',
+  projectId: '914edbc6160f8902ce8a0a69ae73dc61',
   chains: [
     mainnet,
     polygon,
